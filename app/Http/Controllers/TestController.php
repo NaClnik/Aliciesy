@@ -18,7 +18,7 @@ class TestController
         $this->testService = $testService;
     } // __construct.
 
-    public function index($id, $okay): string {
-        return 'TestController index '.$id.$okay.$this->testService->test();
+    public function index(): string {
+        return 'worked!';
     } // index.
 } // TestController.
