@@ -2,6 +2,7 @@
 
 namespace Core\External;
 
+use Config\ConnectionConfig;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Eloquent
@@ -10,7 +11,8 @@ class Eloquent
     {
         $capsule = new Capsule();
 
-        $capsule->addConnection(require_once __ . 'connection.php');
+        $capsule->addConnection((new ConnectionConfig())->getConfig());
 
+        $capsule->bootEloquent();
     } // boot.
 }
