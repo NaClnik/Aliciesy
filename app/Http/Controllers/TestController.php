@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Services\Test\TestService;
+use Core\Http\Responses\JsonResponse;
 
 class TestController
 {
@@ -18,7 +19,7 @@ class TestController
         $this->testService = $testService;
     } // __construct.
 
-    public function index(): string {
-        return 'worked!';
+    public function index(): JsonResponse {
+        return JsonResponse::make('ok');
     } // index.
 } // TestController.

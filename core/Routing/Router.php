@@ -2,6 +2,7 @@
 
 namespace Core\Routing;
 
+use Core\Base\Abstracts\CoreResponse;
 use Core\Base\Interfaces\IUriMatchValidator;
 use Core\Defaults\DefaultUriMatchValidator;
 use Core\Exceptions\RouteNotFoundException;
@@ -77,7 +78,7 @@ class Router
 
     // Методы класса.
     // Метод для исполнения метода контроллера, к которому привязан маршрут.
-    public function executeRoute()
+    public function executeRoute(): CoreResponse
     {
         // Получить совпадающий маршрут.
         $matchedRoute = $this->getMatchedRoute();
