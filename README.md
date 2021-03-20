@@ -1,5 +1,8 @@
 # Aliciesy Framework
 
+## External libraries
+* [__Eloquent ORM__](https://github.com/illuminate/database)
+
 ## Using
 ```
 git clone
@@ -20,11 +23,32 @@ class ApiRouteDefiner extends RouteDefiner
     } // getRoutes.
 } // ApiRouteDefiner.
 ```
-For now, you can define routes with methods `GET` and `POST`.
+For now, you can define routes with methods `GET` `POST`, `PUT`, `DELETE`.
 You must pass the route name, controller name and action name as arguments.
 
 
 You should definitely return `$this->routesCollection;`
+
+## Controllers example
+In order to send responses to the client, you must create
+a controller class and extend the abstract `BaseController` class.
+
+For convenience, place your controllers along this path: `app/Http/Controllers/`
+
+Note that in controller actions, you must return
+class objects that extend the abstract `CoreResponse` class,
+otherwise you will get an error!
+
+```php
+class TestController extends BaseController
+{
+    // Write actions here.
+    public function index(): JsonResponse {
+        return JsonResponse::make(['message' => 'example']);
+    } // index.
+} // TestController.
+```
+
 
 ## Dependency Injection example
 ```php
@@ -41,7 +65,7 @@ class TestController
     } // __construct.
 
     public function index(): string {
-        return $this->testService->test();
+        return JsonResponse::make($this->testService->test());
     } // index.
 } // TestController.
 ```
@@ -92,3 +116,31 @@ class ExceptionsHandler extends CoreExceptionsHandler
 } // ExceptionsHandler.
 ```
 In the register method, you must call the `$this->registerException()` method and pass in a closure with a typed exception parameter. It is important!
+
+## Send JSON response example
+In order to send a `JSON` response, you must return an instance
+of the `JsonResponse` class in the controller action, which can
+be created using the static `make()` method. You must pass the
+object you want to send to this method. Also, if you wish,
+you can add headers and response status `(200 by default)`.
+
+For example:
+
+`in app/Htpp/Controllers/TestController.php`
+
+```php
+class TestController extends BaseController
+{
+    public function index(): JsonResponse {
+        return JsonResponse::make(['message' => 'example']);
+    } // index.
+
+    public function headers(): JsonResponse {
+        return JsonResponse::make(['message' => 'headers example'], ['Content-Length' => '...']);
+    } // foo.
+
+    public function statusCode(): JsonResponse {
+        return JsonResponse::make(['message' => 'statusCode example'], [], 201);
+    } // bar.
+} // TestController.
+```
