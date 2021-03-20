@@ -19,8 +19,11 @@ class DefaultUriMatchValidator implements IUriMatchValidator
         $requestRouteSegments = $routeParser->parse($requestRoute->getRoute());
         $definedRouteSegments = $routeParser->parse($definedRoute->getRoute());
 
-        // Если количество сегментов не совпадает, то возвращаем false.
-        if(count($requestRouteSegments) != count($definedRouteSegments)){
+        // Если количество сегментов не совпадает
+        // или не совпадает метод, то возвращаем false.
+        if(count($requestRouteSegments) != count($definedRouteSegments) ||
+        mb_strtoupper($requestRoute->getMethod()) != mb_strtoupper($definedRoute->getMethod())
+        ){
             return false;
         } // if.
 

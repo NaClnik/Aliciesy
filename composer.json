@@ -7,7 +7,9 @@
             "email": "danycall19@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+      "ext-mbstring": "*"
+    },
     "description": "aliciesy framework",
     "autoload": {
         "psr-4": {
