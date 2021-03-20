@@ -11,6 +11,12 @@ class HeadersCollection implements ICollection
     // Поля класса.
     private array $collection;
 
+    // Конструктор.
+    public function __construct()
+    {
+        $this->collection = [];
+    } // __construct.
+
     #region Аксессоры класса
     // Аксессоры класса.
     /**
@@ -29,6 +35,12 @@ class HeadersCollection implements ICollection
 
         return $this;
     }
+
+    public function pushArray(array $array){
+        $this->collection = array_merge($this->collection, $array);
+
+        return $this;
+    } // pushArray.
 
     public function getValueByKey($key)
     {

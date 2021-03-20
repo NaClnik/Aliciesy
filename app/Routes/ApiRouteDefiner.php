@@ -13,7 +13,7 @@ class ApiRouteDefiner extends RouteDefiner
 {
     public function getRoutes(): RoutesCollection
     {
-        $this->routesCollection->get('/test/verify', TestController::class, 'index');
+        $this->routesCollection->post('/test/verify', TestController::class, 'index');
 
         return $this->routesCollection;
     } // getRoutes.

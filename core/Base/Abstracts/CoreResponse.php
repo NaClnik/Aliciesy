@@ -58,4 +58,8 @@ abstract class CoreResponse
 
         return $this;
     } // addHeader.
+
+    public function addHeadersCollection(array $headersArray){
+        $this->headers->pushArray($headersArray);
+    } // addHeadersCollection.
 } // CoreResponse.

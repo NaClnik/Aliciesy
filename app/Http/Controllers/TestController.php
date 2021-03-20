@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 
 
 use App\Services\Test\TestService;
+use Core\Base\Abstracts\BaseController;
 use Core\Http\Responses\JsonResponse;
 
-class TestController
+class TestController extends BaseController
 {
     // Сервисы.
     private TestService $testService;
@@ -20,6 +21,6 @@ class TestController
     } // __construct.
 
     public function index(): JsonResponse {
-        return JsonResponse::make('ok');
+        return JsonResponse::make([$_POST]);
     } // index.
 } // TestController.

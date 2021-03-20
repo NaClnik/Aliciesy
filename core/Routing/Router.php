@@ -78,7 +78,7 @@ class Router
 
     // Методы класса.
     // Метод для исполнения метода контроллера, к которому привязан маршрут.
-    public function executeRoute(): CoreResponse
+    public function executeRoute()
     {
         // Получить совпадающий маршрут.
         $matchedRoute = $this->getMatchedRoute();
