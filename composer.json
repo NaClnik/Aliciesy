@@ -9,14 +9,15 @@
     ],
     "require": {
       "ext-mbstring": "*",
-      "ext-json": "*"
+      "ext-json": "*",
+        "illuminate/database": "^8.33"
     },
     "description": "aliciesy framework",
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Config\\": "config/",
             "Core\\": "core/"
         }
     }
 }
-
